@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply scroll-smooth;
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    @apply text-gray-900 font-sans;
+    background-color: #e8f5e5;
+    min-height: 100vh;
+  }
+
+  button {
+    @apply transition-all duration-200;
+  }
+}
+
+@layer components {
+  /* ── Botões ── */
+  .btn-primary {
+    @apply px-4 py-2 bg-primary-500 text-white rounded-full font-semibold hover:bg-primary-600 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-md;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-white/70 backdrop-blur-sm text-gray-900 rounded-full font-semibold hover:bg-white/90 active:scale-95 border border-white/60 shadow-sm;
+  }
+
+  .btn-accent {
+    @apply px-4 py-2 bg-accent-500 text-white rounded-full font-semibold hover:bg-accent-600 active:scale-95 disabled:opacity-50 shadow-md;
+  }
+
+  /* ── Card principal: listras + vidro ── */
+  .card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(255,255,255,0.65);
+    box-shadow: 0 2px 16px 0 rgba(26,137,23,0.07), 0 1.5px 4px 0 rgba(0,0,0,0.04);
+
+    /* Listras por baixo */
+    background-color: #f0fced;
+  }
+
+  /* Pseudo-elemento para o brilho/glass por cima */
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.45) 0%,
+      rgba(255,255,255,0.15) 60%,
+      rgba(255,255,255,0.05) 100%
+    );
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* Garante que o conteúdo fique acima do pseudo-elemento */
+  .card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Variante de card mais escuro (stat cards etc.) ── */
+  .card-strong {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(26,137,23,0.18);
+    box-shadow: 0 4px 20px 0 rgba(26,137,23,0.10);
+    background-color: #ddf0d8;
+  }
+
+  .card-strong::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.38) 0%,
+      rgba(255,255,255,0.08) 100%
+    );
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .card-strong > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Input fields ── */
+  .input-field {
+    @apply w-full px-5 py-3 rounded-full border outline-none transition-colors;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(8px);
+    border-color: rgba(26,137,23,0.20);
+  }
+  .input-field:focus {
+    border-color: #1a8917;
+    box-shadow: 0 0 0 2px rgba(26,137,23,0.15);
+    background: rgba(255,255,255,0.92);
+  }
+
+  /* ── Container arredondado genérico ── */
+  .container-rounded {
+    @apply rounded-[2rem];
+  }
+}
+
+@layer utilities {
+  /* Fundo de listras (usado no layout principal e sidebar) */
+  .bg-stripes {
+    background-color: #e8f5e5;
+  }
+
+  /* Overlay de vidro leve (para seções, painéis, etc.) */
+  .glass {
+    background: rgba(255,255,255,0.60);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.70);
+  }
+
+  /* Texto com halo suave para legibilidade sobre listras */
+  .text-halo {
+    text-shadow: 0 1px 8px rgba(255,255,255,0.85), 0 0px 2px rgba(255,255,255,0.9);
+  }
+}
